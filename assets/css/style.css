@@ -1,0 +1,70 @@
+/** CSS Variables **/
+:root{
+    --common-color: purple;
+  }
+
+/** Universal Styling **/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+/** Header Styling **/
+header{
+    width: 80%;
+    font-size: 20px;
+    display: flex;
+}
+
+header a{
+    color: var(--common-color);
+    text-decoration: none;
+    position: relative;
+    left: 10px;
+}
+
+header time {
+    font-size: 20px;
+    right: 10px;
+    position: absolute;
+    right: 10px;
+}
+
+/** Content Stylings **/
+.container{
+    background-color: blue;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+}
+
+/** Highscore Styling **/
+#highscores{
+    background-color: red;
+    margin: 20px;
+    width: fit-content;
+    height: fit-content;
+    margin: 20px auto;
+}
+
+#highscores h1{
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#highscores table{
+    background-color: white;
+    margin: 0 auto;
+    width: 95%;
+    min-height: 20px;
+}
+
+#highscores button{
+    background-color: var(--common-color);
+    margin: 20px;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+}
