@@ -1,3 +1,4 @@
+/* TODO: Cleanup CSS*/
 /** CSS Variables **/
 :root{
     --common-color: purple;
@@ -33,7 +34,6 @@ header time {
 
 /** Content Stylings **/
 .container{
-    background-color: blue;
     width: 60%;
     margin: 0 auto;
     position: relative;
@@ -51,6 +51,7 @@ header time {
     height: fit-content;
     margin: 20px auto;
     position: absolute;
+    left: 20px;
 }
 
 .form h1{
@@ -68,9 +69,27 @@ header time {
     color: white;
 }
 
+/* Highscore Stylings */
 #highscores table{
     background-color: white;
     margin: 0 auto;
     width: 85%;
     min-height: 20px;
+}
+
+/* Quiz Intro Stylings */
+#quiz-intro p{
+    margin: 0 20px;
+    width: fit-content;
+    text-indent: 2%;
+}
+
+#quiz-intro button{
+    background-color: var(--common-color);
+    margin: 20px auto;
+    padding: 10px;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+    display: block;
 }
