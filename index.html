@@ -12,17 +12,18 @@
 <body>
     <!-- Header to hold High Score link and Timer -->
     <header>
-        <a href="#highscores">View Highscores</a>
+        <a onclick="revealHighscores()" id="view-highscores">View Highscores</a>
         <time>Time: 60</time>
     </header>
 
     <!-- Section for Main view -->
     <section class="container">
-        <Section id="highscores">
+        <Section id="highscores" class="hidden">
             <h1>Highscores</h1>
             <table id="highscores-table"></table>
-            <button type="button" id="go-back">Go Back</button>
+            <button type="button" onclick="goBack()" id="go-back">Go Back</button>
             <button type="button" id="clear-scores">Clear Highscores</button>
         </Section>
     </section>
+    <script src="./assets/js/script.js"></script>
 </body>
