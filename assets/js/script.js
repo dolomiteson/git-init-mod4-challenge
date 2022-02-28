@@ -1,19 +1,9 @@
 /* Variable Elements */
-var formsArray = [];
-
-// Quiz Intro Element
-var quizIntro = document.querySelector("#quiz-intro");
-formsArray.push(quizIntro);
-
-// High Score Element
-var highScoreForm = document.querySelector("#highscores");
-formsArray.push(highScoreForm);
-
-// Question(s) Element
-var questionForm = document.querySelector("#question-form");
-formsArray.push(questionForm);
-
-/* General Functionality */
+var formsArray = [
+    quizIntro = document.querySelector("#quiz-intro"),
+    highScoreForm = document.querySelector("#highscores"),
+    questionForm = document.querySelector("#question-form")
+];
 
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
