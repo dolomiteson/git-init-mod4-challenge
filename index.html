@@ -21,14 +21,17 @@
         <section id="quiz-intro" class="form">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score time by ten seconds!</p>
-            <button type="button" id="start-quiz">Start Quiz</button>
+            <button type="button" onclick="revealQuiz()" id="start-quiz">Start Quiz</button>
         </section>
-        <Section id="highscores" class="form hidden">
+        <section id="highscores" class="form hidden">
             <h1>Highscores</h1>
             <table id="highscores-table"></table>
             <button type="button" onclick="revealQuizIntro()" id="go-back">Go Back</button>
             <button type="button" id="clear-scores">Clear Highscores</button>
-        </Section>
+        </section>
+        <section id="question-form" class="form hidden">
+            <h1>Placeholder</h1>
+        </section>
     </section>
     <script src="./assets/js/script.js"></script>
 </body>

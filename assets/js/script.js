@@ -1,9 +1,17 @@
-// Variable Elements
+/* Variable Elements */
 var formsArray = [];
+
+// Quiz Intro Element
 var quizIntro = document.querySelector("#quiz-intro");
 formsArray.push(quizIntro);
+
+// High Score Element
 var highScoreForm = document.querySelector("#highscores");
 formsArray.push(highScoreForm);
+
+// Question(s) Element
+var questionForm = document.querySelector("#question-form");
+formsArray.push(questionForm);
 
 
 /* General Functionality */
@@ -26,7 +34,14 @@ function revealHighscores(){
     revealElement(highScoreForm, formsArray);
 }
 
+// Funtion that will reveal the quiz form and start quiz
+function revealQuiz(){
+    revealElement(questionForm, formsArray);
+}
+
 // Funtion to hide the Highscores element and present Quiz Intro
 function revealQuizIntro(){
     revealElement(quizIntro, formsArray);
 }
+
+//TODO: Create funtion that will traverse questions to generate on the same form element
