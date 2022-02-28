@@ -53,59 +53,57 @@ function revealQuizIntro(){
 
 // Function to take quiz
 function takeQuiz(){
-
-    // Test Questions
-    var question1 = {
-        ask: "Commonly used data types DO NOT include:",
-        answer1: "alerts",
-        answer2: "strings",
-        answer3: "booleans",
-        answer4: "numbers",
-        correct: "alerts"
-    };
-
-    var question2 = {
-        ask: "The condition in an if/else statement is enclosed within____.",
-        answer1: "quotes",
-        answer2: "curly brackets",
-        answer3: "parentheses",
-        answer4: "square brackets",
-        correct: "parentheses"
-    };
-
-    var question3 = {
-        ask: "Arrays in Javascript can be used to store____.",
-        answer1: "numbers and strings",
-        answer2: "other arrays",
-        answer3: "booleans",
-        answer4: "all of the above",
-        correct: "all of the above"
-    };
-
-    var question4 = {
-        ask: "String values must be enclosed within____ when being assigned to variables.",
-        answer1: "commas",
-        answer2: "curly brackets",
-        answer3: "quotes",
-        answer4: "parentheses",
-        correct: "quotes"
-    };
-
-    var question5 = {
-        ask: "A very useful tool used during development and debugging for pronting content to the debugger is:",
-        answer1: "Javascript",
-        answer2: "terminal/bash",
-        answer3: "for loops",
-        answer4: "console.log",
-        correct: "console.log"
-    };
-
+    var quesArray = [
+        {
+            ask: "Commonly used data types DO NOT include:",
+            answer1: "alerts",
+            answer2: "strings",
+            answer3: "booleans",
+            answer4: "numbers",
+            correct: "alerts"
+        },
+        {
+            ask: "The condition in an if/else statement is enclosed within____.",
+            answer1: "quotes",
+            answer2: "curly brackets",
+            answer3: "parentheses",
+            answer4: "square brackets",
+            correct: "parentheses"
+        },
+        {
+            ask: "Arrays in Javascript can be used to store____.",
+            answer1: "numbers and strings",
+            answer2: "other arrays",
+            answer3: "booleans",
+            answer4: "all of the above",
+            correct: "all of the above"
+        },
+        {
+            ask: "String values must be enclosed within____ when being assigned to variables.",
+            answer1: "commas",
+            answer2: "curly brackets",
+            answer3: "quotes",
+            answer4: "parentheses",
+            correct: "quotes"
+        },
+        {
+            ask: "A very useful tool used during development and debugging for pronting content to the debugger is:",
+            answer1: "Javascript",
+            answer2: "terminal/bash",
+            answer3: "for loops",
+            answer4: "console.log",
+            correct: "console.log"
+        }];
     
+    var question = quesArray[Math.floor(Math.random() * quesArray.length)];
+    var rightAns = question.correct;
+    delete question.correct;
 
-    var rightAns = question5.correct;
-    delete question5.correct;
+    generateQuestionForm(question);
 
-    generateQuestionForm(question5);
+    // TODO: Create funtion to get answer results
+
+
 
 }
 
