@@ -2,6 +2,7 @@
 /** CSS Variables **/
 :root{
     --common-color: purple;
+    --indentation: 2%;
   }
 
 /** Universal Styling **/
@@ -45,7 +46,6 @@ header time {
 
 /** Form Stylings **/
 .form{
-    background-color: red;
     margin: 20px;
     width: fit-content;
     height: fit-content;
@@ -81,7 +81,7 @@ header time {
 #quiz-intro p{
     margin: 0 20px;
     width: fit-content;
-    text-indent: 2%;
+    text-indent: var(--indentation);
 }
 
 #quiz-intro button{
@@ -92,4 +92,24 @@ header time {
     height: fit-content;
     color: white;
     display: block;
+}
+
+/* Question Form Stylings */
+#question-form{
+    display: flex;
+    flex-direction: column;
+}
+
+#question-form p{
+    margin: 0 20px auto;
+    width: fit-content;
+    font-size: 20px;
+    text-indent: var(--indentation);
+}
+
+#question-form button{
+    width: fit-content;
+    margin: 2px 0 2px 10px;
+    padding: 0;
+    text-align: left;
 }

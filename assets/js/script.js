@@ -13,20 +13,6 @@ formsArray.push(highScoreForm);
 var questionForm = document.querySelector("#question-form");
 formsArray.push(questionForm);
 
-// Test Question
-var question = {
-    ask: "Is this question appearing in the form?",
-    correct:  {
-        actual: "Yes",
-        isTrue: true 
-    },
-    incorrect:  {
-        actual: "No",
-        isTrue: false 
-    }
-};
-
-
 /* General Functionality */
 
 // Funtion that reveals selected element while hiding all other elements in an array
@@ -54,13 +40,15 @@ function removeQuestion(){
 // Funtion that will reveal the Highscores element
 function revealHighscores(){
     revealElement(highScoreForm, formsArray);
+
+    // TODO: will add this more elegantly later to clear form. More options to come
     removeQuestion();
 }
 
 // Funtion that will reveal the quiz form and start quiz
 function revealQuiz(){
     revealElement(questionForm, formsArray);
-    genQuestionElements(question);
+    genQuestionElements();
 }
 
 // Funtion to hide the Highscores element and present Quiz Intro
@@ -69,15 +57,45 @@ function revealQuizIntro(){
 }
 
 //TODO: Create function to generate question
-function genQuestionElements(questionArr){
+function genQuestionElements(){
+
+    var ansNum = 1;
+
+    // Test Question
+    var questionObject = {
+        ask: "Commonly used data types DO NOT include:",
+        answer1:  {
+            actual: "alerts",
+            isTrue: true 
+        },
+        answer2:  {
+            actual: "strings",
+            isTrue: false 
+        },
+        answer3:  {
+            actual: "booleans",
+            isTrue: false 
+        },
+        answer4:  {
+            actual: "numbers",
+            isTrue: false 
+        }
+    };
 
     // Generate Questions
-    var question = document.createElement("p");
-    question.textContent = questionArr.ask;
-    questionForm.appendChild(question);
+    var questionText = document.createElement("p");
+    questionText.textContent = questionObject.ask;
+    questionForm.appendChild(questionText);
 
-    // Add Buttons
-    alert(Object.keys(questionArr).length);
+    delete questionObject.ask;
+    for(const [key, value] of Object.entries(questionObject)) {
+        var aBtn = document.createElement("button");
+        aBtn.textContent = ansNum + ': ' + value.actual;
+        aBtn.value = value.isTrue;
+        questionForm.appendChild(aBtn);
+        ansNum++;
+    }
+    
 }
 
 //TODO: Create funtion that will traverse questions to generate on the same form element
