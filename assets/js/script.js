@@ -28,13 +28,6 @@ function revealElement(element, elementArr){
     }
 }
 
-// Function that will remove all children of the question form
-function removeQuestion(){
-    while (questionForm.firstChild) {
-        questionForm.removeChild(questionForm.firstChild);
-    }
-}
-
 /* Form presentation functionality */
 
 // Funtion that will reveal the Highscores element
@@ -48,7 +41,7 @@ function revealHighscores(){
 // Funtion that will reveal the quiz form and start quiz
 function revealQuiz(){
     revealElement(questionForm, formsArray);
-    genQuestionElements();
+    takeQuiz();
 }
 
 // Funtion to hide the Highscores element and present Quiz Intro
@@ -56,46 +49,89 @@ function revealQuizIntro(){
     revealElement(quizIntro, formsArray);
 }
 
-//TODO: Create function to generate question
-function genQuestionElements(){
+/* Quiz Form funtionality */
 
-    var ansNum = 1;
+// Function to take quiz
+function takeQuiz(){
 
-    // Test Question
-    var questionObject = {
+    // Test Questions
+    var question1 = {
         ask: "Commonly used data types DO NOT include:",
-        answer1:  {
-            actual: "alerts",
-            isTrue: true 
-        },
-        answer2:  {
-            actual: "strings",
-            isTrue: false 
-        },
-        answer3:  {
-            actual: "booleans",
-            isTrue: false 
-        },
-        answer4:  {
-            actual: "numbers",
-            isTrue: false 
-        }
+        answer1: "alerts",
+        answer2: "strings",
+        answer3: "booleans",
+        answer4: "numbers",
+        correct: "alerts"
     };
+
+    var question2 = {
+        ask: "The condition in an if/else statement is enclosed within____.",
+        answer1: "quotes",
+        answer2: "curly brackets",
+        answer3: "parentheses",
+        answer4: "square brackets",
+        correct: "parentheses"
+    };
+
+    var question3 = {
+        ask: "Arrays in Javascript can be used to store____.",
+        answer1: "numbers and strings",
+        answer2: "other arrays",
+        answer3: "booleans",
+        answer4: "all of the above",
+        correct: "all of the above"
+    };
+
+    var question4 = {
+        ask: "String values must be enclosed within____ when being assigned to variables.",
+        answer1: "commas",
+        answer2: "curly brackets",
+        answer3: "quotes",
+        answer4: "parentheses",
+        correct: "quotes"
+    };
+
+    var question5 = {
+        ask: "A very useful tool used during development and debugging for pronting content to the debugger is:",
+        answer1: "Javascript",
+        answer2: "terminal/bash",
+        answer3: "for loops",
+        answer4: "console.log",
+        correct: "console.log"
+    };
+
+    
+
+    var rightAns = question5.correct;
+    delete question5.correct;
+
+    generateQuestionForm(question5);
+
+}
+
+// Function to generate quiz form child elements
+function generateQuestionForm(quesObj){
+    
+    var ansNum = 1; 
 
     // Generate Questions
     var questionText = document.createElement("p");
-    questionText.textContent = questionObject.ask;
+    questionText.textContent = quesObj.ask;
     questionForm.appendChild(questionText);
 
-    delete questionObject.ask;
-    for(const [key, value] of Object.entries(questionObject)) {
+    delete quesObj.ask;
+    for(const [key, value] of Object.entries(quesObj)) {
         var aBtn = document.createElement("button");
-        aBtn.textContent = ansNum + ': ' + value.actual;
-        aBtn.value = value.isTrue;
+        aBtn.textContent = ansNum + ': ' + value;
+        aBtn.value = value;
         questionForm.appendChild(aBtn);
         ansNum++;
     }
-    
 }
 
-//TODO: Create funtion that will traverse questions to generate on the same form element
+// Function that will remove all children of the question form
+function removeQuestion(){
+    while (questionForm.firstChild) {
+        questionForm.removeChild(questionForm.firstChild);
+    }
+}
