@@ -2,6 +2,7 @@
 /** CSS Variables **/
 :root{
     --common-color: purple;
+    --button-font-color: white;
     --indentation: 2%;
   }
 
@@ -40,6 +41,7 @@ header time {
     position: relative;
 }
 
+/** General Stylings **/
 .hidden {
     visibility: hidden;
 }
@@ -62,11 +64,11 @@ header time {
 
 .form button{
     background-color: var(--common-color);
+    color: var(--button-font-color);
     margin: 20px;
     padding: 10px;
     width: fit-content;
     height: fit-content;
-    color: white;
 }
 
 /* Highscore Stylings */
@@ -85,12 +87,7 @@ header time {
 }
 
 #quiz-intro button{
-    background-color: var(--common-color);
     margin: 20px auto;
-    padding: 10px;
-    width: fit-content;
-    height: fit-content;
-    color: white;
     display: block;
 }
 
@@ -108,8 +105,7 @@ header time {
 }
 
 #question-form button{
-    width: fit-content;
-    margin: 2px 0 2px 10px;
+    margin: 2px 0 2px 20px;
     padding: 0;
     text-align: left;
 }
