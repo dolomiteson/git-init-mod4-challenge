@@ -87,9 +87,12 @@ function takeQuiz(){
             answer3: "for loops",
             answer4: "console.log",
             correct: "console.log"
-        }];
-    
-    var question = quesArray[Math.floor(Math.random() * quesArray.length)];
+    }];
+
+    // Pick
+    quesArray = shuffle(quesArray);
+    var question = quesArray[quesArray.length - 1];
+    quesArray.pop();
     var rightAns = question.correct;
     delete question.correct;
 
@@ -126,4 +129,22 @@ function removeQuestion(){
     while (questionForm.firstChild) {
         questionForm.removeChild(questionForm.firstChild);
     }
+}
+
+function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
 }
