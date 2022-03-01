@@ -22,10 +22,14 @@ function revealElement(element, elementArr){
 
 // Funtion that will reveal the Highscores element
 function revealHighscores(){
-    revealElement(highScoreForm, formsArray);
-
-    // TODO: will add this more elegantly later to clear form. More options to come
-    removeQuestion();
+    if(questionForm.firstChild !== null){
+        var isLeave = confirm("If you leave this quiz progrees will not be saved! Do you wish to continue?");
+        if(isLeave === true){
+            revealElement(highScoreForm, formsArray);
+            removeQuestion();
+        }
+    }
+    else{revealElement(highScoreForm, formsArray);}
 }
 
 // Funtion that will reveal the quiz form and start quiz
