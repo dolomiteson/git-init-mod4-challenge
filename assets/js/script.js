@@ -50,8 +50,10 @@ var quesArray = [
 var answerKey = [];
 var question = "";
 var correctAnswer = "";
+var timeInterval = "";
 
 var timeVal = quesArray.length * 12;
+var pauseTime = 3;
 
 var timerEle = document.querySelector("#test-time");
 timerEle.textContent = timeVal;
@@ -111,14 +113,20 @@ function takeQuiz(){
 
 function nextQuestion(){
     // TODO: show final score element if quesArray has no more questions
-    removeQuestion();
-    question = pickQuestion();
-    // Grab and remove the correct answer for further use
-    correctAnswer = question.correct;
-    delete question.correct;
+    if(quesArray.length > 0){
+        removeQuestion();
+        question = pickQuestion();
+        // Grab and remove the correct answer for further use
+        correctAnswer = question.correct;
+        delete question.correct;
 
-    // Use remaing properties to create the form
-    generateQuestionForm(question);
+        // Use remaing properties to create the form
+        generateQuestionForm(question);
+    }
+    else{
+        clearInterval(timeInterval);
+        revealQuizIntro();
+    }
 }
 
 // Function to generate quiz form child elements
@@ -190,7 +198,7 @@ function selectAnswer (btnVal){
         response = "Wrong!";
         timeVal -= 10;
     }
-     
+    
     // Generate Echo Response
      var echoResponse = document.createElement("p");
      echoResponse.textContent = response;
@@ -205,7 +213,7 @@ function selectAnswer (btnVal){
 
 // Function to countdown when quiz begins
 function countdown() {
-    var timeInterval = setInterval(function () {
+    timeInterval = setInterval(function () {
       if (timeVal > 0) {        
         timeVal--;
         timerEle.textContent = timeVal;
