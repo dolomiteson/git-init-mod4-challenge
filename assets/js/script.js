@@ -39,7 +39,7 @@ var quesArray = [
         correct: "quotes"
     },
     {
-        ask: "A very useful tool used during development and debugging for pronting content to the debugger is:",
+        ask: "A very useful tool used during development and debugging for printing content to the debugger is:",
         answer1: "Javascript",
         answer2: "terminal/bash",
         answer3: "for loops",
@@ -113,6 +113,7 @@ function takeQuiz(){
 
 function nextQuestion(){
     // TODO: show final score element if quesArray has no more questions
+    
     if(quesArray.length > 0){
         removeQuestion();
         question = pickQuestion();
@@ -189,6 +190,16 @@ function pickQuestion(){
 
 // Select answer and grade
 function selectAnswer (btnVal){
+    console.log(timeVal);
+    // TODO: Maybe put check here on timeval
+    // Disable buttons during this section
+    for(var index = 0; index < questionForm.children.length; index++){
+        console.log(questionForm.children[index].tagName);
+        if(questionForm.children[index].tagName === "BUTTON"){
+            questionForm.children[index].disabled = "disabled";
+        }
+    }
+
     var response = "";
     if(btnVal === correctAnswer){
         response = "Correct!";
