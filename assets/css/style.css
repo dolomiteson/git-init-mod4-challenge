@@ -27,11 +27,12 @@ header a{
     left: 10px;
 }
 
-header time {
+header div {
     font-size: 20px;
     right: 10px;
     position: absolute;
     right: 10px;
+    display: flex;
 }
 
 /** Content Stylings **/

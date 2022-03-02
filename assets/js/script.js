@@ -53,8 +53,8 @@ var correctAnswer = "";
 
 var timeVal = quesArray.length * 12;
 
-var timerEle = document.querySelector('time');
-timerEle.textContent = "Time: " + timeVal;
+var timerEle = document.querySelector("#test-time");
+timerEle.textContent = timeVal;
 
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
@@ -106,7 +106,7 @@ function takeQuiz(){
 
     // Use remaing properties to create the form
     generateQuestionForm(question);
-    countdown(timeVal);
+    countdown();
 }
 
 // Function to generate quiz form child elements
@@ -176,8 +176,7 @@ function selectAnswer (btnVal){
     }
     else{
         response = "Wrong!";
-        // TODO: Fix Count() to decrement correctly
-        timerEle.textContent = "Time: " + (timeVal - 10);
+        timeVal -= 10;
     }
      
     // Generate Echo Response
@@ -190,14 +189,13 @@ function selectAnswer (btnVal){
 /* Timer Functionality */
 
 // Function to countdown when quiz begins
-function countdown(num) {
-    
-
+function countdown() {
     var timeInterval = setInterval(function () {
-      if (num > 0) {        
-        num--;
-        timerEle.textContent = "Time: " + num;
+      if (timeVal > 0) {        
+        timeVal--;
+        timerEle.textContent = timeVal;
       } else {
+        timerEle.textContent = 0;
         clearInterval(timeInterval);
       }
     }, 1000);
