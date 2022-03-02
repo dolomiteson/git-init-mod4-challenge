@@ -1,9 +1,60 @@
 /* Variable Elements */
 var formsArray = [
-    quizIntro = document.querySelector("#quiz-intro"),
-    highScoreForm = document.querySelector("#highscores"),
-    questionForm = document.querySelector("#question-form")
-];
+     quizIntro = document.querySelector("#quiz-intro"),
+     highScoreForm = document.querySelector("#highscores"),
+     questionForm = document.querySelector("#question-form")
+ ];
+
+var quesArray = [
+    {
+        ask: "Commonly used data types DO NOT include:",
+        answer1: "alerts",
+        answer2: "strings",
+        answer3: "booleans",
+        answer4: "numbers",
+        correct: "alerts"
+    },
+    {
+        ask: "The condition in an if/else statement is enclosed within____.",
+        answer1: "quotes",
+        answer2: "curly brackets",
+        answer3: "parentheses",
+        answer4: "square brackets",
+        correct: "parentheses"
+    },
+    {
+        ask: "Arrays in Javascript can be used to store____.",
+        answer1: "numbers and strings",
+        answer2: "other arrays",
+        answer3: "booleans",
+        answer4: "all of the above",
+        correct: "all of the above"
+    },
+    {
+        ask: "String values must be enclosed within____ when being assigned to variables.",
+        answer1: "commas",
+        answer2: "curly brackets",
+        answer3: "quotes",
+        answer4: "parentheses",
+        correct: "quotes"
+    },
+    {
+        ask: "A very useful tool used during development and debugging for pronting content to the debugger is:",
+        answer1: "Javascript",
+        answer2: "terminal/bash",
+        answer3: "for loops",
+        answer4: "console.log",
+        correct: "console.log"
+}];
+
+var answerKey = [];
+var question = "";
+var correctAnswer = "";
+
+var timeVal = quesArray.length * 12;
+
+var timerEle = document.querySelector('time');
+timerEle.textContent = "Time: " + timeVal;
 
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
@@ -47,61 +98,15 @@ function revealQuizIntro(){
 
 // Function to take quiz
 function takeQuiz(){
-    var quesArray = [
-        {
-            ask: "Commonly used data types DO NOT include:",
-            answer1: "alerts",
-            answer2: "strings",
-            answer3: "booleans",
-            answer4: "numbers",
-            correct: "alerts"
-        },
-        {
-            ask: "The condition in an if/else statement is enclosed within____.",
-            answer1: "quotes",
-            answer2: "curly brackets",
-            answer3: "parentheses",
-            answer4: "square brackets",
-            correct: "parentheses"
-        },
-        {
-            ask: "Arrays in Javascript can be used to store____.",
-            answer1: "numbers and strings",
-            answer2: "other arrays",
-            answer3: "booleans",
-            answer4: "all of the above",
-            correct: "all of the above"
-        },
-        {
-            ask: "String values must be enclosed within____ when being assigned to variables.",
-            answer1: "commas",
-            answer2: "curly brackets",
-            answer3: "quotes",
-            answer4: "parentheses",
-            correct: "quotes"
-        },
-        {
-            ask: "A very useful tool used during development and debugging for pronting content to the debugger is:",
-            answer1: "Javascript",
-            answer2: "terminal/bash",
-            answer3: "for loops",
-            answer4: "console.log",
-            correct: "console.log"
-    }];
-
-    // Pick
-    quesArray = shuffle(quesArray);
-    var question = quesArray[quesArray.length - 1];
-    quesArray.pop();
-    var rightAns = question.correct;
+    
+    question = pickQuestion();
+    // Grab and remove the correct answer for further use
+    correctAnswer = question.correct;
     delete question.correct;
 
+    // Use remaing properties to create the form
     generateQuestionForm(question);
-
-    // TODO: Create funtion to get answer results
-
-
-
+    countdown(timeVal);
 }
 
 // Function to generate quiz form child elements
@@ -113,12 +118,14 @@ function generateQuestionForm(quesObj){
     var questionText = document.createElement("p");
     questionText.textContent = quesObj.ask;
     questionForm.appendChild(questionText);
-
     delete quesObj.ask;
+
+    // Generate Buttons
     for(const [key, value] of Object.entries(quesObj)) {
         var aBtn = document.createElement("button");
         aBtn.textContent = ansNum + ': ' + value;
         aBtn.value = value;
+        aBtn.setAttribute("onclick", "selectAnswer(this.value)");
         questionForm.appendChild(aBtn);
         ansNum++;
     }
@@ -131,6 +138,9 @@ function removeQuestion(){
     }
 }
 
+/* Question Functionalityy */
+
+// Shuffle Array
 function shuffle(array) {
     let currentIndex = array.length,  randomIndex;
   
@@ -148,3 +158,47 @@ function shuffle(array) {
   
     return array;
 }
+
+// Funtion to pick question and eliminate from being reused during quiz
+function pickQuestion(){
+    quesArray = shuffle(quesArray);
+    var question = quesArray[quesArray.length - 1];
+    quesArray.pop();
+    return question;
+}
+
+// Select answer and grade
+function selectAnswer (btnVal){
+    var response = "";
+    if(btnVal === correctAnswer){
+        response = "Correct!";
+        answerKey.push("T");
+    }
+    else{
+        response = "Wrong!";
+        // TODO: Fix Count() to decrement correctly
+        timerEle.textContent = "Time: " + (timeVal - 10);
+    }
+     
+    // Generate Echo Response
+     var echoResponse = document.createElement("p");
+     echoResponse.textContent = response;
+     echoResponse.style.borderTop = "solid";
+     questionForm.appendChild(echoResponse);
+}
+
+/* Timer Functionality */
+
+// Function to countdown when quiz begins
+function countdown(num) {
+    
+
+    var timeInterval = setInterval(function () {
+      if (num > 0) {        
+        num--;
+        timerEle.textContent = "Time: " + num;
+      } else {
+        clearInterval(timeInterval);
+      }
+    }, 1000);
+  }

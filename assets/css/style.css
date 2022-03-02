@@ -99,7 +99,7 @@ header time {
 
 #question-form p{
     margin: 0 20px auto;
-    width: fit-content;
+    width: 80%;
     font-size: 20px;
     text-indent: var(--indentation);
 }
@@ -109,3 +109,4 @@ header time {
     padding: 0;
     text-align: left;
 }
+
