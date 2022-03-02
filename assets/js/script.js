@@ -205,8 +205,9 @@ function selectAnswer (btnVal){
      echoResponse.style.borderTop = "solid";
      questionForm.appendChild(echoResponse);
 
+     clearInterval(timeInterval);
      // Generate next question
-     nextQuestion();
+     setTimeout(() => { countdown(); nextQuestion();}, 1000);
 }
 
 /* Timer Functionality */
