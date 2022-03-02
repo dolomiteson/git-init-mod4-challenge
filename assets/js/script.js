@@ -51,9 +51,8 @@ var answerKey = [];
 var question = "";
 var correctAnswer = "";
 var timeInterval = "";
-
 var timeVal = quesArray.length * 12;
-var pauseTime = 3;
+var pauseTime = 1;
 
 var timerEle = document.querySelector("#test-time");
 timerEle.textContent = timeVal;
@@ -79,7 +78,6 @@ function revealHighscores(){
         var isLeave = confirm("If you leave this quiz progrees will not be saved! Do you wish to continue?");
         if(isLeave === true){
             revealElement(highScoreForm, formsArray);
-            removeQuestion();
         }
     }
     else{revealElement(highScoreForm, formsArray);}
@@ -93,6 +91,7 @@ function revealQuiz(){
 
 // Funtion to hide the Highscores element and present Quiz Intro
 function revealQuizIntro(){
+    location.reload();
     revealElement(quizIntro, formsArray);
 }
 
@@ -100,7 +99,6 @@ function revealQuizIntro(){
 
 // Function to take quiz
 function takeQuiz(){
-    
     question = pickQuestion();
     // Grab and remove the correct answer for further use
     correctAnswer = question.correct;
@@ -192,9 +190,9 @@ function pickQuestion(){
 function selectAnswer (btnVal){
     console.log(timeVal);
     // TODO: Maybe put check here on timeval
+
     // Disable buttons during this section
     for(var index = 0; index < questionForm.children.length; index++){
-        console.log(questionForm.children[index].tagName);
         if(questionForm.children[index].tagName === "BUTTON"){
             questionForm.children[index].disabled = "disabled";
         }
@@ -211,14 +209,15 @@ function selectAnswer (btnVal){
     }
     
     // Generate Echo Response
-     var echoResponse = document.createElement("p");
-     echoResponse.textContent = response;
-     echoResponse.style.borderTop = "solid";
-     questionForm.appendChild(echoResponse);
+    var echoResponse = document.createElement("p");
+    echoResponse.textContent = response;
+    echoResponse.style.borderTop = "solid";
+    questionForm.appendChild(echoResponse);
 
-     clearInterval(timeInterval);
-     // Generate next question
-     setTimeout(() => { countdown(); nextQuestion();}, 1000);
+    clearInterval(timeInterval);
+    // Generate next question
+    setTimeout(() => { countdown(); nextQuestion();}, 500);
+    
 }
 
 /* Timer Functionality */
