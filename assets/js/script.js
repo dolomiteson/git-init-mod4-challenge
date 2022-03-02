@@ -109,6 +109,18 @@ function takeQuiz(){
     countdown();
 }
 
+function nextQuestion(){
+    // TODO: show final score element if quesArray has no more questions
+    removeQuestion();
+    question = pickQuestion();
+    // Grab and remove the correct answer for further use
+    correctAnswer = question.correct;
+    delete question.correct;
+
+    // Use remaing properties to create the form
+    generateQuestionForm(question);
+}
+
 // Function to generate quiz form child elements
 function generateQuestionForm(quesObj){
     
@@ -184,6 +196,9 @@ function selectAnswer (btnVal){
      echoResponse.textContent = response;
      echoResponse.style.borderTop = "solid";
      questionForm.appendChild(echoResponse);
+
+     // Generate next question
+     nextQuestion();
 }
 
 /* Timer Functionality */
