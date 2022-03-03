@@ -49,20 +49,20 @@ var quesArray = [
 }];
 
 var answerKey = [];
+var score = "";
 var question = "";
 var correctAnswer = "";
 var timeInterval = "";
 var timeVal = quesArray.length * 12;
 var pauseTime = 1;
 
-/* Timer on Header */
+/* Timer Element */
 var timerEle = document.querySelector("#test-time");
 timerEle.textContent = timeVal;
 
-/* Score Variables */
+/* Score Elements */
 var scoreEle = document.querySelector("#score");
 var initialsInput = document.querySelector("#initials-input");
-var initialsBtn = document.querySelector("#submit-initials");
 
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
@@ -82,7 +82,7 @@ function revealElement(element, elementArr){
 // Funtion that will reveal the Highscores element
 function revealHighscores(){
     if(questionForm.firstChild !== null){
-        var isLeave = confirm("If you leave this quiz progrees will not be saved! Do you wish to continue?");
+        var isLeave = confirm("If you leave this quiz progress will not be saved! Do you wish to continue?");
         if(isLeave === true){
             revealElement(highScoreForm, formsArray);
         }
@@ -98,7 +98,7 @@ function revealQuiz(){
 
 // Funtion to hide the Highscores element and present Quiz Intro
 function revealQuizIntro(){
-    //location.reload();
+    location.reload();
     revealElement(quizIntro, formsArray);
 }
 
@@ -236,21 +236,46 @@ function selectAnswer (btnVal){
 // Function to countdown when quiz begins
 function countdown() {
     timeInterval = setInterval(function () {
-      if (timeVal > 0) {        
+        if (timeVal > 0) {        
         timeVal--;
         timerEle.textContent = timeVal;
-      } else {
+        } else {
         timerEle.textContent = 0;
         clearInterval(timeInterval);
         getScore();
         revealScore();
-      }
+        }
     }, 1000);
-  }
+}
 
   /* Scoring Functionality */
-  function getScore(){
-    var score = answerKey.length * 10;
+
+  // Function to calculate score
+function getScore(){
+    score = answerKey.length * 10;
     score += timeVal;
     scoreEle.textContent = score;
+}
+
+function postScore(){
+    removeQuestion();
+    //var initials = initialsInput.value;
+    var tableBody = document.getElementsByTagName('tbody');
+ 
+    // Create Table Row
+    var tableRow = document.createElement("tr");
+    tableBody.appendChild(tableRow);
+    
+
+    // // Create Initials Column
+    // var initColumn = document.createElement("td");
+    // initColumn = textContent = initials;
+    // console.log(initials);
+    // tableRow.appendChild(initColumn);
+
+    // // Create Score column
+    // var scoreColumn = document.createElement("td");
+    // scoreColumn = textContent = score;
+    // tableRow.appendChild(scoreColumn);
+    // revealHighscores();
 }

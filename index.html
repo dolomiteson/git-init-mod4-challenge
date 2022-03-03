@@ -28,7 +28,9 @@
         </section>
         <section id="highscores" class="form hidden">
             <h1>Highscores</h1>
-            <table id="highscores-table"></table>
+            <table id="highscores-table">
+                <tbody></tbody>
+            </table>
             <button type="button" onclick="revealQuizIntro()" id="go-back">Go Back</button>
             <button type="button" id="clear-scores">Clear Highscores</button>
         </section>
@@ -39,7 +41,7 @@
             <div id="initials-submit">
                 <label for="initials">Enter Initials:</label>
                 <input type="text" id="initials-input" name="initials">
-                <button type="button" onclick="postScores()" id="submit-initials">Submit</button>
+                <button type="button" onclick="postScore()" id="submit-initials">Submit</button>
             </div>
         </section>
     </section>
