@@ -33,6 +33,15 @@
             <button type="button" id="clear-scores">Clear Highscores</button>
         </section>
         <section id="question-form" class="form hidden"></section>
+        <section id="score-form" class="form hidden">
+            <h1>All done!</h1>
+            <p>Your final score is <span id="score"></span>.</p>
+            <div id="initials-submit">
+                <label for="initials">Enter Initials:</label>
+                <input type="text" id="initials-input" name="initials">
+                <button type="button" onclick="postScores()" id="submit-initials">Submit</button>
+            </div>
+        </section>
     </section>
     <script src="./assets/js/script.js"></script>
 </body>

@@ -2,7 +2,8 @@
 var formsArray = [
      quizIntro = document.querySelector("#quiz-intro"),
      highScoreForm = document.querySelector("#highscores"),
-     questionForm = document.querySelector("#question-form")
+     questionForm = document.querySelector("#question-form"),
+     scoreForm = document.querySelector("#score-form")
  ];
 
 var quesArray = [
@@ -54,8 +55,14 @@ var timeInterval = "";
 var timeVal = quesArray.length * 12;
 var pauseTime = 1;
 
+/* Timer on Header */
 var timerEle = document.querySelector("#test-time");
 timerEle.textContent = timeVal;
+
+/* Score Variables */
+var scoreEle = document.querySelector("#score");
+var initialsInput = document.querySelector("#initials-input");
+var initialsBtn = document.querySelector("#submit-initials");
 
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
@@ -95,6 +102,11 @@ function revealQuizIntro(){
     revealElement(quizIntro, formsArray);
 }
 
+// Function to display the Score Form
+function revealScore(){
+    revealElement(scoreForm, formsArray);
+}
+
 /* Quiz Form funtionality */
 
 // Function to take quiz
@@ -125,7 +137,7 @@ function nextQuestion(){
     else{
         clearInterval(timeInterval);
         getScore();
-        revealQuizIntro();
+        revealScore();
     }
 }
 
@@ -231,7 +243,7 @@ function countdown() {
         timerEle.textContent = 0;
         clearInterval(timeInterval);
         getScore();
-        revealQuizIntro();
+        revealScore();
       }
     }, 1000);
   }
@@ -240,6 +252,5 @@ function countdown() {
   function getScore(){
     var score = answerKey.length * 10;
     score += timeVal;
-    console.log(score);
-    return score;
+    scoreEle.textContent = score;
 }
