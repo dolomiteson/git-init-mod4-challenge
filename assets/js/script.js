@@ -91,7 +91,7 @@ function revealQuiz(){
 
 // Funtion to hide the Highscores element and present Quiz Intro
 function revealQuizIntro(){
-    location.reload();
+    //location.reload();
     revealElement(quizIntro, formsArray);
 }
 
@@ -124,6 +124,7 @@ function nextQuestion(){
     }
     else{
         clearInterval(timeInterval);
+        getScore();
         revealQuizIntro();
     }
 }
@@ -188,9 +189,7 @@ function pickQuestion(){
 
 // Select answer and grade
 function selectAnswer (btnVal){
-    console.log(timeVal);
-    // TODO: Maybe put check here on timeval
-
+    
     // Disable buttons during this section
     for(var index = 0; index < questionForm.children.length; index++){
         if(questionForm.children[index].tagName === "BUTTON"){
@@ -207,7 +206,7 @@ function selectAnswer (btnVal){
         response = "Wrong!";
         timeVal -= 10;
     }
-    
+
     // Generate Echo Response
     var echoResponse = document.createElement("p");
     echoResponse.textContent = response;
@@ -231,6 +230,16 @@ function countdown() {
       } else {
         timerEle.textContent = 0;
         clearInterval(timeInterval);
+        getScore();
+        revealQuizIntro();
       }
     }, 1000);
   }
+
+  /* Scoring Functionality */
+  function getScore(){
+    var score = answerKey.length * 10;
+    score += timeVal;
+    console.log(score);
+    return score;
+}
