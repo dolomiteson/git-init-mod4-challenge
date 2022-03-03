@@ -56,6 +56,9 @@ var timeInterval = "";
 var timeVal = quesArray.length * 12;
 var pauseTime = 1;
 
+/* Highscore Table Body */
+var tBody = document.getElementsByTagName("tbody")[0];
+
 /* Timer Element */
 var timerEle = document.querySelector("#test-time");
 timerEle.textContent = timeVal;
@@ -125,7 +128,7 @@ function nextQuestion(){
     // TODO: show final score element if quesArray has no more questions
     
     if(quesArray.length > 0){
-        removeQuestion();
+        removeChildren(questionForm);
         question = pickQuestion();
         // Grab and remove the correct answer for further use
         correctAnswer = question.correct;
@@ -164,9 +167,9 @@ function generateQuestionForm(quesObj){
 }
 
 // Function that will remove all children of the question form
-function removeQuestion(){
-    while (questionForm.firstChild) {
-        questionForm.removeChild(questionForm.firstChild);
+function removeChildren(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
     }
 }
 
@@ -258,24 +261,32 @@ function getScore(){
 }
 
 function postScore(){
-    removeQuestion();
-    //var initials = initialsInput.value;
-    var tableBody = document.getElementsByTagName('tbody');
- 
-    // Create Table Row
-    var tableRow = document.createElement("tr");
-    tableBody.appendChild(tableRow);
+    removeChildren(questionForm);
     
+    var place = 0;
 
-    // // Create Initials Column
-    // var initColumn = document.createElement("td");
-    // initColumn = textContent = initials;
-    // console.log(initials);
-    // tableRow.appendChild(initColumn);
+    // Insert a Row
+    var scoreRow = tBody.insertRow();
 
-    // // Create Score column
-    // var scoreColumn = document.createElement("td");
-    // scoreColumn = textContent = score;
-    // tableRow.appendChild(scoreColumn);
-    // revealHighscores();
+    // Insert Place Cell
+    var placeCell = scoreRow.insertCell();
+    var placeText = document.createTextNode(place + ".");
+    placeCell.appendChild(placeText);
+
+    // Insert Initials Cell
+    var initCell = scoreRow.insertCell();
+    var initials = initialsInput.value;
+    var initText = document.createTextNode(initials);
+    initCell.appendChild(initText);
+
+    // Insert Score Cell
+    var scoreCell = scoreRow.insertCell();
+    var scoreText = document.createTextNode(score);
+    scoreCell.appendChild(scoreText);
+
+    revealHighscores();
+}
+
+function clearHighScores(){
+    removeChildren(tBody);
 }

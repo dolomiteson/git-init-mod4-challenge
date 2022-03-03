@@ -29,10 +29,17 @@
         <section id="highscores" class="form hidden">
             <h1>Highscores</h1>
             <table id="highscores-table">
+                <thead>
+                    <tr>
+                        <th>Place</th>
+                        <th>Initials</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
                 <tbody></tbody>
             </table>
             <button type="button" onclick="revealQuizIntro()" id="go-back">Go Back</button>
-            <button type="button" id="clear-scores">Clear Highscores</button>
+            <button type="button" onclick="clearHighScores()" id="clear-scores">Clear Highscores</button>
         </section>
         <section id="question-form" class="form hidden"></section>
         <section id="score-form" class="form hidden">
