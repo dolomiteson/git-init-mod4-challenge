@@ -43,5 +43,5 @@ THEN I can save my initials and score
     3. Store data locally along with other scores saved
 
 ### Objective Evidence
-![Example Picture](/assets/images/Screenshot 2022-03-04 141427.png?raw=true "Here is an example!")
-[Try it yourself!](https://dolomiteson.github.io/git-init-mod3-challenge/)
+![Example Picture](/assets/images/example.png?raw=true "Here is an example!")
+[Try it yourself!](https://dolomiteson.github.io/git-init-mod4-challenge/)
