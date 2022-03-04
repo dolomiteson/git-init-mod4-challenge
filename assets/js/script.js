@@ -260,33 +260,64 @@ function getScore(){
     scoreEle.textContent = score;
 }
 
-function postScore(){
-    removeChildren(questionForm);
+// TODO: Rewrite all of this to handle local storage and table implementation
+// function postScore(){
+//     removeChildren(questionForm);
     
-    var place = 0;
+//     var place = 0;
 
-    // Insert a Row
-    var scoreRow = tBody.insertRow();
+//     // Insert a Row
+//     var scoreRow = tBody.insertRow();
+//     scoreRow.classList.add("even");
 
-    // Insert Place Cell
-    var placeCell = scoreRow.insertCell();
-    var placeText = document.createTextNode(place + ".");
-    placeCell.appendChild(placeText);
+//     // Insert Place Cell
+//     var placeCell = scoreRow.insertCell();
+//     var placeText = document.createTextNode(place + ".");
+//     placeCell.appendChild(placeText);
 
-    // Insert Initials Cell
-    var initCell = scoreRow.insertCell();
-    var initials = initialsInput.value;
-    var initText = document.createTextNode(initials);
-    initCell.appendChild(initText);
+//     // Insert Initials Cell
+//     var initCell = scoreRow.insertCell();
+//     var initials = initialsInput.value;
+//     var initText = document.createTextNode(initials);
+//     initCell.appendChild(initText);
 
-    // Insert Score Cell
-    var scoreCell = scoreRow.insertCell();
-    var scoreText = document.createTextNode(score);
-    scoreCell.appendChild(scoreText);
+//     // Insert Score Cell
+//     var scoreCell = scoreRow.insertCell();
+//     var scoreText = document.createTextNode(score);
+//     scoreCell.appendChild(scoreText);
+ 
+//     revealHighscores();
+// }
 
-    revealHighscores();
-}
+// function manageLocalStore(initVal, scoreVal){
+//      // Get older submissions from local storage
+//      var scoreStore = JSON.parse(localStorage.getItem("score"));
+
+//      if(scoreStore === null){
+//         var aScore = {
+//             initials: initVal,
+//             score: scoreVal,
+//         };
+        
+//         // Set new submission to local storage 
+//         localStorage.setItem("score", JSON.stringify(aScore));
+        
+//      }
+//      else{
+//          scoreStore.add();
+//      }
+
+//      console.log(scoreStore);
+ 
+//      set new submission to local storage 
+//      localStorage.setItem("score", JSON.stringify(aScore));
+//      //localStorage.clear();
+
+//       // // Set new submission to local storage 
+//   // localStorage.setItem("user", JSON.stringify(user));
+// }
 
 function clearHighScores(){
     removeChildren(tBody);
+    localStorage.clear();
 }

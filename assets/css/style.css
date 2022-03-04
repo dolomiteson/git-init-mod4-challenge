@@ -73,12 +73,21 @@ header div {
 }
 
 /* Highscore Stylings */
-#highscores table{
+table{
     background-color: white;
     margin: 0 auto;
     width: 85%;
     min-height: 20px;
 }
+
+table thead tr th{
+    text-align: left;
+}
+
+.even{
+    background-color: plum;
+}
+
 
 /* Quiz Intro Stylings */
 #quiz-intro p{
