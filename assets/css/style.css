@@ -82,6 +82,8 @@ table{
 
 table thead tr th{
     text-align: left;
+    background-color: var(--common-color);
+    color: white;
 }
 
 .even{

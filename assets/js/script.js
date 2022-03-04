@@ -261,61 +261,52 @@ function getScore(){
 }
 
 // TODO: Rewrite all of this to handle local storage and table implementation
-// function postScore(){
-//     removeChildren(questionForm);
+function postScore(){
+    removeChildren(questionForm);
     
-//     var place = 0;
+    var initials = initialsInput.value;
 
-//     // Insert a Row
-//     var scoreRow = tBody.insertRow();
-//     scoreRow.classList.add("even");
+    // Get local storage
+    const highscores = JSON.parse(localStorage.getItem("storedScores")) ?? [];
+   
 
-//     // Insert Place Cell
-//     var placeCell = scoreRow.insertCell();
-//     var placeText = document.createTextNode(place + ".");
-//     placeCell.appendChild(placeText);
+    // Add new record
+    highscores.push({score, initials});
 
-//     // Insert Initials Cell
-//     var initCell = scoreRow.insertCell();
-//     var initials = initialsInput.value;
-//     var initText = document.createTextNode(initials);
-//     initCell.appendChild(initText);
-
-//     // Insert Score Cell
-//     var scoreCell = scoreRow.insertCell();
-//     var scoreText = document.createTextNode(score);
-//     scoreCell.appendChild(scoreText);
- 
-//     revealHighscores();
-// }
-
-// function manageLocalStore(initVal, scoreVal){
-//      // Get older submissions from local storage
-//      var scoreStore = JSON.parse(localStorage.getItem("score"));
-
-//      if(scoreStore === null){
-//         var aScore = {
-//             initials: initVal,
-//             score: scoreVal,
-//         };
+    // Sort by score
+    highscores.sort((a,b) => b.score - a.score);//highScores.sort((a, b) => b.score-a.score);
+    
+    // Present results
+    for(var index = 0; index < highscores.length; index++){
+        var place = index + 1
         
-//         // Set new submission to local storage 
-//         localStorage.setItem("score", JSON.stringify(aScore));
-        
-//      }
-//      else{
-//          scoreStore.add();
-//      }
+        //Insert a Row
+        var scoreRow = tBody.insertRow();
+        if(place % 2 === 0){
+            scoreRow.classList.add("even");
+        }
 
-//      console.log(scoreStore);
- 
-//      set new submission to local storage 
-//      localStorage.setItem("score", JSON.stringify(aScore));
-//      //localStorage.clear();
+        // Insert Place Cell
+        var placeCell = scoreRow.insertCell();
+        var placeText = document.createTextNode(place + ".");
+        placeCell.appendChild(placeText);
 
-//       // // Set new submission to local storage 
-//   // localStorage.setItem("user", JSON.stringify(user));
-// }
+        // Insert Initials Cell
+        var initCell = scoreRow.insertCell();
+        var initText = document.createTextNode(highscores[index].initials);
+        initCell.appendChild(initText);
+
+        // Insert Score Cell
+        var scoreCell = scoreRow.insertCell();
+        var scoreText = document.createTextNode(highscores[index].score);
+        scoreCell.appendChild(scoreText);
+    }
+
+    // Set local storage
+    localStorage.setItem("storedScores", JSON.stringify(highscores));
+    
+    revealHighscores();
+}
 
 function clearHighScores(){
     removeChildren(tBody);
