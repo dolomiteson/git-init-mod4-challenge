@@ -67,6 +67,13 @@ timerEle.textContent = timeVal;
 var scoreEle = document.querySelector("#score");
 var initialsInput = document.querySelector("#initials-input");
 
+// Function that will remove all children of the question form
+function removeChildren(parent){
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
 
@@ -166,13 +173,6 @@ function generateQuestionForm(quesObj){
     }
 }
 
-// Function that will remove all children of the question form
-function removeChildren(parent){
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-}
-
 /* Question Functionalityy */
 
 // Shuffle Array
@@ -230,12 +230,11 @@ function selectAnswer (btnVal){
 
     clearInterval(timeInterval);
     // Generate next question
-    setTimeout(() => { countdown(); nextQuestion();}, 500);
+    setTimeout(() => {countdown(); nextQuestion();}, 1000);
     
 }
 
 /* Timer Functionality */
-
 // Function to countdown when quiz begins
 function countdown() {
     timeInterval = setInterval(function () {
@@ -243,7 +242,8 @@ function countdown() {
         timeVal--;
         timerEle.textContent = timeVal;
         } else {
-        timerEle.textContent = 0;
+        timeVal = 0;
+        timerEle.textContent = timeVal;
         clearInterval(timeInterval);
         getScore();
         revealScore();
@@ -251,16 +251,14 @@ function countdown() {
     }, 1000);
 }
 
-  /* Scoring Functionality */
-
-  // Function to calculate score
+/* Scoring Functionality */
+// Function to calculate score
 function getScore(){
     score = answerKey.length * 10;
     score += timeVal;
     scoreEle.textContent = score;
 }
 
-// TODO: Rewrite all of this to handle local storage and table implementation
 function postScore(){
     removeChildren(questionForm);
     
@@ -268,7 +266,6 @@ function postScore(){
 
     // Get local storage
     const highscores = JSON.parse(localStorage.getItem("storedScores")) ?? [];
-   
 
     // Add new record
     highscores.push({score, initials});
