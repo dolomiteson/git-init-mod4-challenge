@@ -66,6 +66,8 @@ timerEle.textContent = timeVal;
 /* Score Elements */
 var scoreEle = document.querySelector("#score");
 var initialsInput = document.querySelector("#initials-input");
+var submitInitials = document.querySelector("#submit-initials");
+submitInitials.disabled = "disabled";
 
 // Function that will remove all children of the question form
 function removeChildren(parent){
@@ -213,13 +215,17 @@ function selectAnswer (btnVal){
     }
 
     var response = "";
-    if(btnVal === correctAnswer){
+    if(btnVal === correctAnswer ){
         response = "Correct!";
         answerKey.push("T");
     }
-    else{
+    else if(btnVal !== correctAnswer && timeVal > 10){
         response = "Wrong!";
         timeVal -= 10;
+    }
+    else{
+        response = "Wrong!";
+        timeval = 0;
     }
 
     // Generate Echo Response
@@ -230,7 +236,7 @@ function selectAnswer (btnVal){
 
     clearInterval(timeInterval);
     // Generate next question
-    setTimeout(() => {countdown(); nextQuestion();}, 1000);
+    setTimeout(() => {countdown(); nextQuestion(); timerEle.textContent = timeVal;}, 500);
     
 }
 
@@ -240,14 +246,12 @@ function countdown() {
     timeInterval = setInterval(function () {
         if (timeVal > 0) {        
         timeVal--;
-        timerEle.textContent = timeVal;
         } else {
-        timeVal = 0;
-        timerEle.textContent = timeVal;
         clearInterval(timeInterval);
         getScore();
         revealScore();
         }
+        timerEle.textContent = timeVal;
     }, 1000);
 }
 
@@ -255,6 +259,8 @@ function countdown() {
 // Function to calculate score
 function getScore(){
     score = answerKey.length * 10;
+    console.log(score);
+    console.log(timeVal);
     score += timeVal;
     scoreEle.textContent = score;
 }
