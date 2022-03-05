@@ -56,7 +56,8 @@ var timeInterval = "";
 var timeVal = quesArray.length * 12;
 var pauseTime = 1;
 
-/* Highscore Table Body */
+/* Highscore Elements */
+var highscoreLink = document.getElementById("view-highscores");
 var tBody = document.getElementsByTagName("tbody")[0];
 
 /* Timer Element */
@@ -85,6 +86,11 @@ function removeChildren(parent){
 // Funtion that reveals selected element while hiding all other elements in an array
 function revealElement(element, elementArr){
 
+    if(element.getAttribute("id") === "highscores"){
+        highscoreLink.classList.add("hidden");
+    }
+    
+
     for(i=0; i < elementArr.length; i++){
         if(element !== elementArr[i]){
             elementArr[i].classList.add("hidden");
@@ -103,6 +109,7 @@ function revealHighscores(){
         var isLeave = confirm("If you leave this quiz progress will not be saved! Do you wish to continue?");
         if(isLeave === true){
             revealElement(highScoreForm, formsArray);
+
         }
     }
     else{        
