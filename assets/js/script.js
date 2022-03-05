@@ -65,9 +65,15 @@ timerEle.textContent = timeVal;
 
 /* Score Elements */
 var scoreEle = document.querySelector("#score");
+
+// Initials Textbox Element
 var initialsInput = document.querySelector("#initials-input");
+initialsInput.addEventListener("input", disableSubmitButton);
+
+// Initials Submit button element 
 var submitInitials = document.querySelector("#submit-initials");
-submitInitials.disabled = "disabled";
+
+/* All Functions */
 
 // Function that will remove all children of the question form
 function removeChildren(parent){
@@ -99,7 +105,9 @@ function revealHighscores(){
             revealElement(highScoreForm, formsArray);
         }
     }
-    else{revealElement(highScoreForm, formsArray);}
+    else{        
+        revealElement(highScoreForm, formsArray);
+    }
 }
 
 // Funtion that will reveal the quiz form and start quiz
@@ -259,10 +267,16 @@ function countdown() {
 // Function to calculate score
 function getScore(){
     score = answerKey.length * 10;
-    console.log(score);
-    console.log(timeVal);
     score += timeVal;
     scoreEle.textContent = score;
+}
+
+//Function to Disable Submit Button
+function disableSubmitButton(){
+    if(initialsInput.value.length === 3){
+        submitInitials.classList.remove("hidden");
+    }
+    else{submitInitials.classList.add("hidden");}
 }
 
 function postScore(){
@@ -279,6 +293,16 @@ function postScore(){
     // Sort by score
     highscores.sort((a,b) => b.score - a.score);//highScores.sort((a, b) => b.score-a.score);
     
+    // Set local storage
+    localStorage.setItem("storedScores", JSON.stringify(highscores));
+
+    presentHighscores();
+}
+
+function presentHighscores(){
+    // Get local storage
+    const highscores = JSON.parse(localStorage.getItem("storedScores")) ?? [];
+
     // Present results
     for(var index = 0; index < highscores.length; index++){
         var place = index + 1
@@ -304,9 +328,6 @@ function postScore(){
         var scoreText = document.createTextNode(highscores[index].score);
         scoreCell.appendChild(scoreText);
     }
-
-    // Set local storage
-    localStorage.setItem("storedScores", JSON.stringify(highscores));
     
     revealHighscores();
 }

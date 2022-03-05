@@ -12,7 +12,7 @@
 <body>
     <!-- Header to hold High Score link and Timer -->
     <header>
-        <a onclick="revealHighscores()" id="view-highscores">View Highscores</a>
+        <a onclick="presentHighscores()" id="view-highscores">View Highscores</a>
         <div>
             <p>Time:&nbsp</p>
             <p id="test-time"></p>
@@ -48,7 +48,7 @@
             <div id="initials-submit">
                 <label for="initials">Enter Initials:</label>
                 <input type="text" id="initials-input" name="initials">
-                <button type="button" onclick="postScore()" id="submit-initials">Submit</button>
+                <button type="button" onclick="postScore()" id="submit-initials" class="hidden">Submit</button>
             </div>
         </section>
     </section>

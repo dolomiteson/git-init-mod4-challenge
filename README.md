@@ -8,6 +8,7 @@ In the end the fiinal grade will be calculated and presented in the highscores t
 
 ### Future feature(s)
 1. Store questions from an external source so that maintenance  of question inclusion wil not impact code.
+    1. This will make it scalable to all quizzes
 
 ## Acceptance Criteria Coverage
 
