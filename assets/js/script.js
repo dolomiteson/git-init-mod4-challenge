@@ -298,8 +298,7 @@ function postScore(){
     highscores.push({score, initials});
 
     // Sort by score
-    highscores.sort((a,b) => b.score - a.score);//highScores.sort((a, b) => b.score-a.score);
-    
+    highscores.sort((a,b) => b.score - a.score);
     // Set local storage
     localStorage.setItem("storedScores", JSON.stringify(highscores));
 
